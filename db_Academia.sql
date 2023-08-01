@@ -1,5 +1,5 @@
 -- Jhonatan Julio Gonçalves Machado
-drop database dbAcademia;
+-- drop database dbAcademia;
 
 -- Criando database 
 create database dbAcademia;

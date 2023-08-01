@@ -1,5 +1,5 @@
 -- Jhonatan Julio Gonçalves Machado
-drop database dbClinicaMedica;
+-- drop database dbClinicaMedica;
 
 -- Criando database
 create database dbClinicaMedica;
