@@ -291,6 +291,7 @@ delete from tbItensDaVenda where subtotal = 'R$75,30';
 -- Mostrar tudo e por order by:
 select * from tbGenero order by id_genero;
 
+
 -- tbCliente
 
 -- Mostrar tudo:
@@ -298,6 +299,10 @@ select * from tbCliente order by id_cliente;
 
 -- Pesquisa por código:
 select * from tbCliente where id_cliente = 3;
+
+-- Pesquisa por nome:
+select * from tbCliente where nome = 'Noah Martins';
+
 
 -- tbAutor
 
@@ -307,6 +312,7 @@ select * from tbAutor order by id_autor;
 -- Utilizando alias e criando coluna virtual:
 select nome as 'Nome do Autor', email as 'E-mail do Autor', 'SIM' as 'Existe estoque do autor?' from tbAutor;
 
+
 -- tbLivro
 
 -- Mostrar tudo:
@@ -314,6 +320,10 @@ select * from tbLivro order by id_livro;
 
 -- Usando distinct:
 select distinct estoque from tbLivro;
+
+-- Usando o operador like:
+select * from tbLivro where titulo like 'A%%e';
+
 
 -- tbEscreve
 
@@ -323,5 +333,35 @@ select * from tbEscreve order by id_autor;
 -- Usando o operador in:
 select * from tbEscreve where id_livro in(2,1,5);
 
+-- Usando o operador not:
+select * from tbEscreve where id_livro not in(2,1,5);
+
+-- Usando operador or:
+select * from tbEscreve where id_livro = 2 or id_livro = 5; 
+
+
 -- tbVenda
+
+-- Mostrar tudo:
+select * from tbVenda order by id_venda;
+
+-- Usando operador maior e igual:
+select * from tbVenda where total >= 150.00;
+
+-- Usando operador menor e igual:
+select * from tbVenda where total <= 92.30;
+
+
 -- tbItensDaVenda
+
+-- Mostrar tudo:
+select * from tbItensDaVenda order by id_venda;
+
+-- Usando operador maior:
+select * from tbItensDaVenda where qtd > 3;
+
+-- Usando operador menor:
+select * from tbItensDaVenda where qtd < 3;
+
+-- Usando operador AND:
+select * from tbItensDaVenda where id_livro = 5 and qtd = 3;
