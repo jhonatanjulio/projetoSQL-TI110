@@ -297,3 +297,45 @@ select * from tbTitulos order by cod_tit;
 select * from tbPedidos order by num_ped;
 select * from tbTitulosArtista order by cod_tit;
 select * from tbTitulosPedido order by num_ped;
+
+-- 1. Selecione o nome dos CDs e o nome da gravadora de cada CD.
+select
+    tit.nome_cd,
+    grav.nome_grav
+from tbTitulos as tit
+inner join tbGravadoras as grav
+on grav.cod_grav = tit.cod_grav;
+
+-- 2. Selecione o nome dos CDs e o nome da categoria de cada CD.
+select
+    tit.nome_cd,
+    cat.nome_cat
+from tbTitulos as tit
+inner join tbCategorias as cat
+on cat.cod_cat = tit.cod_cat;
+
+-- 3. Selecione o nome dos CDs, o nome das gravadoras de cada CD e o nome da categoria de cada CD. 
+select
+    tit.nome_cd,
+    grav.nome_grav,
+    cat.nome_cat
+from tbTitulos as tit
+inner join tbGravadoras as grav
+on grav.cod_grav = tit.cod_grav
+inner join tbCategorias as cat
+on cat.cod_cat = tit.cod_cat;
+
+-- 4. Selecione o nome dos clientes e os títulos dos CDs vendidos em cada pedido que o cliente fez.
+select
+    cli.cod_cli,
+    cli.nome_cli,
+    ped.num_ped,
+    tit.nome_cd
+from tbClientes as cli
+inner join tbPedidos as ped
+on cli.cod_cli = ped.cod_cli
+left join tbTitulos as tit
+on tit.cod_tit = cli.cod_cli
+inner join tbTitulosPedido as titPe
+on ped.num_ped = titPe.num_ped
+where cli.cod_cli in(ped.cod_cli) AND tit.cod_tit in(titPe.cod_tit);

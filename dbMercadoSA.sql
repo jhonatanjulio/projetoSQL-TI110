@@ -202,3 +202,24 @@ inner join tbProdutos as prod
 on vend.cod_prod = prod.cod_prod
 inner join tbFornecedores as forn
 on prod.cod_forn = forn.cod_forn;
+
+select 
+    prod.descricao as 'Nome do Produto',
+    prod.qtd as 'Quantidade'
+from tbFuncionarios as func
+left join tbProdutos as prod
+on func.cod_func = prod.cod_prod;
+
+select 
+    prod.descricao as 'Nome do Produto',
+    prod.qtd as 'Quantidade'
+from tbFuncionarios as func
+right join tbProdutos as prod
+on func.cod_func = prod.cod_prod;
+
+select 
+    prod.descricao,
+    prod.qtd
+from tbFuncionarios as func
+right join tbProdutos as prod
+on func.cod_func = prod.cod_prod;
