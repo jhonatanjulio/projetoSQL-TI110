@@ -23,7 +23,30 @@ create table tbFuncionarios(
 -- insert into tbFuncionarios(nome,email,cpf,d_nasc,endereco,cep,numero,bairro,estado,cidade) values ();
 
 -- Busca por código
-select * tbFuncionarios where cod_func = 1;
+-- select * tbFuncionarios where cod_func = 1;
 
 -- Busca por nome
-select nome from tbFuncionarios where nome like '%ho%';
+-- select nome from tbFuncionarios where nome like '%ho%';
+
+-- Alterar funcionário
+-- update tbFuncionarios set nome = @nome, email = @email, cpf = @cpf, d_nasc = @d_nasc, endereco = @endereco, cep = @cep, numero = @numero, bairro = @bairro, estado = @estado, cidade = @cidade where cod_func = @codFunc;
+
+-- Excluir funcionário
+-- delete from tbFuncionarios where cod_func = @codFunc;
+
+create table tbUsuarios(
+    cod_usu int not null auto_increment,
+    usuario varchar(30) not null,
+    senha varchar(10) not null,
+    cod_func int not null,
+
+    primary key(cod_usu),
+    foreign key(cod_func) references tbFuncionarios(cod_func)
+);
+
+insert into tbUsuarios(usuario, senha, cod_func) values ('admin', 'admin', 1);
+
+select * from tbUsuarios where usuario = 'admin' and senha = 'admin';
+
+
+
