@@ -44,9 +44,15 @@ create table tbUsuarios(
     foreign key(cod_func) references tbFuncionarios(cod_func)
 );
 
-insert into tbUsuarios(usuario, senha, cod_func) values ('admin', 'admin', 1);
+-- insert into tbUsuarios(usuario, senha, cod_func) values ('admin', 'admin', 1);
 
-select * from tbUsuarios where usuario = 'admin' and senha = 'admin';
+-- select func.nome from tbUsuarios as usu inner join tbFuncionarios as func on usu.cod_func <> func.cod_func;
 
+-- select * from tbUsuarios where usuario = 'admin' and senha = 'admin';
 
+-- select * from tbUsuarios where usuario = @usuario and senha = @senha;
+
+-- select nome from tbFuncionarios order by nome asc;
+
+-- select usu.usuario, usu.senha, func.cod_func from tb_Funcionarios as func inner join tb_Usuarios as usu on func.cod_func = usu.cod_func where func.nome = @nome;
 
