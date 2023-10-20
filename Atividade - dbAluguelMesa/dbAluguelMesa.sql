@@ -19,3 +19,15 @@ create table tbAluguel (
     primary key(idAlug),
     foreign key(idMesa) references tbMesa(idMesa)
 );
+
+
+-- Ações da Janela Cadastrar Mesas:
+
+-- Cadastro das mesas:
+-- insert into tbMesa(qtdCad, status) values (@qtdCad, @status);
+
+-- Pesquisar mesas disponíveis:
+-- select idMesa, qtdCad from tbMesa where status = 'DISPONIVEL';
+
+-- Pesquisar mesas indisponíveis:
+-- select idMesa, qtdCad from tbMesa where status = 'INDISPONIVEL';
