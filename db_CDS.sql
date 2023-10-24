@@ -1,3 +1,4 @@
+-- Jhonatan Julio Gonçalves Machado
 drop database db_cds;
 
 -- 1. Crie uma database com o nome DB_CDS
