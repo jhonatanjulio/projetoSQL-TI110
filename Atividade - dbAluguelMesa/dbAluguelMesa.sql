@@ -1,4 +1,4 @@
--- drop database dbAluguelMesa
+drop database dbAluguelMesa;
 
 create database dbAluguelMesa;
 use dbAluguelMesa;
@@ -12,7 +12,7 @@ create table tbMesa (
 
 create table tbAluguel (
     idAlug int not null auto_increment,
-    cliente varchar(20) not null,
+    cliente varchar(20) not null unique,
     status varchar(15) not null default 'EM ANDAMENTO', -- quando a reserva terminar alterar para CONCLUIDO
     idMesa int not null,
 
@@ -47,8 +47,26 @@ create table tbAluguel (
 
 -- Ações da Janela Cadastrar Mesas:
 
+
+-- Pesquisar todos os dados pelo código da mesa (para pesquisa alugadas):
+-- select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idMesa = 4;
+
+-- Pesquisar todos os dados pelo código da mesa (para pesquisa de mesas):
+-- select idMesa, status from tbMesa where idMesa = @idMesa;
+
 -- Pesquisar mesas disponíveis:
 -- select idMesa, qtdCad from tbMesa where status = 'DISPONIVEL';
 
 -- Pesquisar mesas alugadas:
 -- select cliente, idMesa, status from tbAluguel;
+
+-- Cadastrar mesas alugadas:
+-- insert into tbAluguel(cliente, idMesa) values (@cliente, @idMesa);
+
+-- Alterar o status da mesa alugada:
+-- update tbMesa set status = @status where = idMesa = @idMesa;
+
+-- Liberar mesas alugadas:
+-- update tbAluguel set status = 'CONCLUIDO' where idMesa = @idMesa;
+
+-- update tbMesa set status = 'DISPONIVEL' where idMesa = @idMesa;
