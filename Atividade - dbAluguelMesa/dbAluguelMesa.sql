@@ -3,18 +3,32 @@ drop database dbAluguelMesa;
 create database dbAluguelMesa;
 use dbAluguelMesa;
 
+create table tbGarcom (
+    idGarcom int not null auto_increment,
+    nome varchar(20) not null,
+    email varchar(50) not null,
+    cpf char(14) not null,
+    dataEntrada date not null,
+    status varchar(15) not null,
+
+    primary key(idGarcom)
+);
+
 create table tbMesa (
     idMesa int not null auto_increment,
     qtdCad int not null,
+    dataEntrada date not null,
     status varchar(15) not null default 'DISPONIVEL', -- INDISPONIVEL
     primary key(idMesa)
 );
 
 create table tbAluguel (
     idAlug int not null auto_increment,
-    cliente varchar(20) not null unique,
+    cliente varchar(20) not null,
+    dataAluguel date not null,
     status varchar(15) not null default 'EM ANDAMENTO', -- quando a reserva terminar alterar para CONCLUIDO
     idMesa int not null,
+    
 
     primary key(idAlug),
     foreign key(idMesa) references tbMesa(idMesa)
@@ -24,7 +38,7 @@ create table tbAluguel (
 -- Ações da Janela Cadastrar Mesas:
 
 -- Cadastro das mesas:
--- insert into tbMesa(qtdCad, status) values (@qtdCad, @status);
+-- insert into tbMesa(qtdCad, status, dataEntrada) values (@qtdCad, @status, @dataEntrada);
 
 -- Pesquisar mesas disponíveis:
 -- select idMesa, qtdCad from tbMesa where status = 'DISPONIVEL';
@@ -45,11 +59,11 @@ create table tbAluguel (
 -- delete from tbMesa where idMesa = @idMesa;
 
 
--- Ações da Janela Cadastrar Mesas:
+-- Ações da Janela Alugar Mesas:
 
 
 -- Pesquisar todos os dados pelo código da mesa (para pesquisa alugadas):
--- select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idMesa = 4;
+-- select alu.cliente, alu.idMesa, mesa.status, alu.dataAluguel from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idAlug = @idAlug;
 
 -- Pesquisar todos os dados pelo código da mesa (para pesquisa de mesas):
 -- select idMesa, status from tbMesa where idMesa = @idMesa;
