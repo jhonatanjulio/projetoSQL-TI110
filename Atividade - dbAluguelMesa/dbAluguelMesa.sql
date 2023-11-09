@@ -9,7 +9,7 @@ create table tbGarcom (
     email varchar(50) not null,
     cpf char(14) not null,
     dataEntrada date not null,
-    status varchar(15) not null,
+    status varchar(15) not null default 'ATIVO', -- INATIVO
 
     primary key(idGarcom)
 );
@@ -61,7 +61,6 @@ create table tbAluguel (
 
 -- Ações da Janela Alugar Mesas:
 
-
 -- Pesquisar todos os dados pelo código da mesa (para pesquisa alugadas):
 -- select alu.cliente, alu.idMesa, mesa.status, alu.dataAluguel from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idAlug = @idAlug;
 
@@ -75,7 +74,7 @@ create table tbAluguel (
 -- select cliente, idMesa, status from tbAluguel;
 
 -- Cadastrar mesas alugadas:
--- insert into tbAluguel(cliente, idMesa) values (@cliente, @idMesa);
+-- insert into tbAluguel(cliente, dataAluguel, idMesa) values (@cliente, @dataAluguel, @idMesa);
 
 -- Alterar o status da mesa alugada:
 -- update tbMesa set status = @status where = idMesa = @idMesa;
@@ -84,3 +83,12 @@ create table tbAluguel (
 -- update tbAluguel set status = 'CONCLUIDO' where idMesa = @idMesa;
 
 -- update tbMesa set status = 'DISPONIVEL' where idMesa = @idMesa;
+
+
+-- Ações da Janela Cadastrar Funcionários:
+
+-- Cadastrar funcionários:
+-- insert into tbGarcom(nome, email, cpf, dataEntrada, status) values (@nome, @email, @cpf, @dataEntrada, @status);
+
+-- Pesquisar funcionários ativos:
+-- select idGarcom, nome, status from tbGarcom where status = "ATIVO";
