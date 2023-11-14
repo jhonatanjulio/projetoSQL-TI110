@@ -27,11 +27,16 @@ create table tbAluguel (
     cliente varchar(20) not null,
     dataAluguel date not null,
     status varchar(15) not null default 'EM ANDAMENTO', -- quando a reserva terminar alterar para CONCLUIDO
+    valorConta decimal(9,2) not null,
+    gorjeta decimal(9,2) not null,
+    total decimal(9,2) not null,
     idMesa int not null,
+    idGarcom int not null,
     
 
     primary key(idAlug),
-    foreign key(idMesa) references tbMesa(idMesa)
+    foreign key(idMesa) references tbMesa(idMesa),
+    foreign key(idGarcom) references tbGarcom(idGarcom)
 );
 
 
@@ -92,3 +97,10 @@ create table tbAluguel (
 
 -- Pesquisar funcionários ativos:
 -- select idGarcom, nome, status from tbGarcom where status = "ATIVO";
+
+-- Pesquisar todos os dados pelo código do funcionário:
+-- select * from tbGarcom where idGarcom = @idGarcom;
+
+-- Alterar funcionário:
+-- update tbGarcom set nome = @nome, email = @email, cpf = @cpf, dataEntrada = @dataEntrada, status = @status where idGarcom = @idGarcom;
+
