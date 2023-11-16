@@ -22,6 +22,16 @@ create table tbMesa (
     primary key(idMesa)
 );
 
+create table tbUsuario(
+    idUsu int not null auto_increment,
+    usuario varchar(20) not null unique,
+    senha varchar(20) not null,
+    idGarcom int not null,
+
+    primary key(idUsu),
+    foreign key(idGarcom) references tbGarcom(idGarcom)
+);
+
 create table tbAluguel (
     idAlug int not null auto_increment,
     cliente varchar(20) not null,
