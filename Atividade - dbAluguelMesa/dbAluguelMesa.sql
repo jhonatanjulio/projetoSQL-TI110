@@ -114,3 +114,22 @@ create table tbAluguel (
 -- Alterar funcionário:
 -- update tbGarcom set nome = @nome, email = @email, cpf = @cpf, dataEntrada = @dataEntrada, status = @status where idGarcom = @idGarcom;
 
+-- Ações Janela Cadastrar Usuários:
+
+-- Pesquisar todos Funcionários Disponíveis:
+-- select func.nome from tbGarcom as func left join tbUsuario as usu on usu.idGarcom = func.idGarcom where usu.idGarcom is null;
+
+-- Pesquisar codigo do funcionario pelo nome:
+-- select idGarcom from tbGarcom where nome = @nome;
+
+-- Cadastrar Usuário:
+-- insert into tbUsuario(usuario, senha, idGarcom) values (@usuario, @senha, @idGarcom);
+
+-- Pesquisar usuários por nome:
+-- select usuario from tbUsuario where usuario like '@nome';
+
+-- Pesquisar todos os dados do registro pelo nome:
+-- select * from tbUsuario where usuario = @nome;
+
+-- Pesquisar nome do funcionario pelo id:
+-- select nome from tbGarcom where idGarcom = @idGarcom;
