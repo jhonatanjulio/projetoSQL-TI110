@@ -89,13 +89,13 @@ create table tbAluguel (
 -- select cliente, idMesa, status from tbAluguel;
 
 -- Cadastrar mesas alugadas:
--- insert into tbAluguel(cliente, dataAluguel, idMesa) values (@cliente, @dataAluguel, @idMesa);
+-- insert into tbAluguel(cliente, dataAluguel, idMesa, idGarcom) values (@cliente, @dataAluguel, @idMesa, @idGarcom);
 
 -- Alterar o status da mesa alugada:
 -- update tbMesa set status = @status where = idMesa = @idMesa;
 
 -- Liberar mesas alugadas:
--- update tbAluguel set status = 'CONCLUIDO' where idMesa = @idMesa;
+-- update tbAluguel set status = 'CONCLUIDO', valorConta = @valorConta, gorjeta = @gorjeta, total = @total where idAlug = @id;
 
 -- update tbMesa set status = 'DISPONIVEL' where idMesa = @idMesa;
 
@@ -114,10 +114,14 @@ create table tbAluguel (
 -- Alterar funcionário:
 -- update tbGarcom set nome = @nome, email = @email, cpf = @cpf, dataEntrada = @dataEntrada, status = @status where idGarcom = @idGarcom;
 
+-- Desativar funcionário:
+-- update tbGarcom set status = "INATIVO" where idGarcom = @idGarcom;
+
+
 -- Ações Janela Cadastrar Usuários:
 
 -- Pesquisar todos Funcionários Disponíveis:
--- select func.nome from tbGarcom as func left join tbUsuario as usu on usu.idGarcom = func.idGarcom where usu.idGarcom is null;
+-- select func.nome from tbGarcom as func left join tbUsuario as usu on usu.idGarcom = func.idGarcom where usu.idGarcom is null AND func.status = "ATIVO";
 
 -- Pesquisar codigo do funcionario pelo nome:
 -- select idGarcom from tbGarcom where nome = @nome;
@@ -133,3 +137,47 @@ create table tbAluguel (
 
 -- Pesquisar nome do funcionario pelo id:
 -- select nome from tbGarcom where idGarcom = @idGarcom;
+
+-- Alterar Usuário:
+-- update tbUsuario set usuario = @usuario, senha = @senha where idGarcom = @idGarcom;
+
+-- Deletar Usuário:
+-- delete from tbUsuario where usuario = @usuario;
+
+
+-- Ações Janela de Autenticação:
+
+-- Pesquisar todos os registros que batem com o nome e senha inseridos:
+-- select * from tbUsuario where usuario = @usuario and senha = @senha;
+
+-- Ações Janela Histórico de Reservas:
+
+-- Pesquisar todos os garçons da tabela de Garçom:
+-- select nome from tbGarcom;
+
+-- Pesquisar o código do garçom selecionado:
+-- select idGarcom from tbGarcom where nome = @nome;
+
+-- Pesquisar as reservas com todos os filtros ativados (nome, garçom e data):
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.cliente like '%@nome%' AND alu.dataAluguel = @dataAluguel AND alu.idGarcom = @idGarcom;
+
+-- Pesquisar as reservas com os filtros: nome + garçom:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.cliente like '%@nome%' AND alu.idGarcom = @idGarcom;
+
+-- Pesquisar as reservas com os filtros: garçom + data:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.dataAluguel = @dataAluguel AND alu.idGarcom = @idGarcom;
+
+-- Pesquisar as reservas com os filtros: nome + data:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.cliente like '%@nome%' AND alu.dataAluguel = @dataAluguel;
+
+-- Pesquisar as reservas pelo nome:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.cliente like '%@nome%';
+
+-- Pesquisar as reservas pelo garçom:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.idGarcom = @idGarcom;
+
+-- Pesquisar as reservas pela data:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom where alu.dataAluguel = @dataAluguel;
+
+-- Pesquisar todas as reservas:
+-- select alu.cliente, alu.dataAluguel, alu.valorConta, alu.gorjeta, alu.total, garc.nome, alu.status from tbAluguel as alu inner join tbGarcom as garc on alu.idGarcom = garc.idGarcom;
